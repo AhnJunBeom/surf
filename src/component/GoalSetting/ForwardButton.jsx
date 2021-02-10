@@ -1,20 +1,14 @@
 import React from 'react';
 
-class ForwardButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
+function BackButton({ step, setStep }) {
 
-    handleChange() {
-        this.props.valueChange('step', this.props.step + 1);
+    function handleChange() {
+        setStep(step + 1);
     }
-
-    render () {
-        return (
-            <button onClick = {this.handleChange}>다음</button>
-        );
-    }
+    return (
+            <button onClick = {handleChange}>다음</button>
+    );
 }
 
-export default ForwardButton;
+
+export default BackButton;

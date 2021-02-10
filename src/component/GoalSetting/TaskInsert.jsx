@@ -1,31 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class TaskInsert extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            taskName : ''
-        }
-        this.valueChange = this.valueChange.bind(this);
-        this.taskInput = this.taskInput.bind(this);
+function TaskInsert({addItem}) {
+    const [taskName, setTaskName] = useState('');
+
+    function valueChange(e) {
+        setTaskName(e.target.value);
     }
-    valueChange(e) {
-        this.setState({taskName : e.target.value});
-    }
-    taskInput(e) {
+    function taskInput(e) {
         e.preventDefault();
-        this.props.addItem(this.state.taskName);
-        this.setState({taskName : e.target.value});
+        addItem(taskName);
+        setTaskName('');
     }
 
-    render () {
-        return (
-            <form className='TaskInsert'>
-                <input placeholder="할 일을 입력하세요." value={this.state.taskName} onChange={this.valueChange}/>
-                <button type="submit" onClick={this.taskInput}>+</button>
-            </form>
-        );
-    }
-
+     return (
+        <form className='TaskInsert'>
+            <input placeholder="할 일을 입력하세요." value={taskName} onChange={valueChange}/>
+            <button type="submit" onClick={taskInput}>+</button>
+        </form>
+    );
 }
 export default TaskInsert;

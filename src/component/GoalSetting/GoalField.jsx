@@ -1,23 +1,17 @@
 import React from 'react';
 
-class GoalField extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
+function GoalField({ goalName, setGoalName}) {
 
-    handleChange(e) {
+    function handleChange(e) {
         const value = e.target.value;
-        this.props.valueChange('goalName', value);
+        setGoalName(value);
     }
 
-    render () {
-        return (
-            <div>
-                <input type="text" value={this.props.goalName} onChange={this.handleChange} placeholder="나의 목표" />
-            </div>
-        );
-    }
+    return (
+        <div>
+            <input type="text" value={goalName} onChange={handleChange} placeholder="나의 목표" />
+        </div>
+    );
 }
 
 export default GoalField;
